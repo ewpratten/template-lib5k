@@ -17,3 +17,18 @@ lib5k_jar = urllib.request.urlopen(f"https://github.com/frc5024/lib5k/releases/d
 with open(f"libs/lib5k-bundle-{lib5k_version}-monolithic.jar", "wb") as fp:
     fp.write(lib5k_jar)
     fp.close()
+
+# Make a scripts directory
+os.mkdir("scripts")
+
+# Read the latest Lib5K python scripts
+simulate_script = urllib.request.urlopen(f"https://github.com/frc5024/lib5k/releases/download/{lib5k_tag}/simulate.py").read()
+logreader_script = urllib.request.urlopen(f"https://github.com/frc5024/lib5k/releases/download/{lib5k_tag}/logreader.py").read()
+
+# Write the scripts
+with open("scripts/simulate.py", "w") as fp:
+    fp.write(simulate_script)
+    fp.close()
+with open("scripts/logreader.py", "w") as fp:
+    fp.write(logreader_script)
+    fp.close()
