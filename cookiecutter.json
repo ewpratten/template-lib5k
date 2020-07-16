@@ -1,0 +1,8 @@
+{
+    "team": "5024",
+    "year": "2020",
+    "robot_name": "robot",
+    "lib5k_version": "latest",
+    "gradlerio_version": "2020.+",
+    "java_package": "io.github.frc5024"
+}
