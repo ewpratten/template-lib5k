@@ -2,6 +2,6 @@
     "team": "5024",
     "year": "2020",
     "robot_name": "robot",
-    "gradlerio_version": "2020.+",
+    "gradlerio_version": "2020.3.2",
     "java_package": "io.github.frc5024"
 }

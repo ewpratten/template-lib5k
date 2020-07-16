@@ -12,6 +12,18 @@ targetCompatibility = JavaVersion.VERSION_11
 
 def ROBOT_MAIN_CLASS = "{{cookiecutter.java_package}}.y{{cookiecutter.year}}.{{cookiecutter.robot_name}}.Main"
 
+repositories{
+    // Main repos
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+
+    // FRC repos
+    maven { setUrl("https://jitpack.io")}
+    maven { setUrl("https://frcmaven.wpi.edu/artifactory/release/")}
+    maven { setUrl("https://repo1.maven.org/maven2/")}
+}
+
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
@@ -69,7 +81,6 @@ dependencies {
 
     // MathUtils
     implementation 'com.github.ewpratten:ewmath:master-SNAPSHOT'
-    api 'org.apache.commons:commons-math3:3.6.1'
 
     // guava
     implementation 'com.google.guava:guava:27.0.1-jre'
