@@ -1,4 +1,4 @@
-# Lib5K Project Template
+# Lib5K Project Template [![CookieCutter Template](https://img.shields.io/badge/cookiecutter-template-blue)](https://github.com/cookiecutter/cookiecutter)
 This is a [Cookiecutter](https://github.com/cookiecutter/cookiecutter) template repository for quickly creating [@frc5024](https://github.com/frc5024) [Lib5K](https://github.com/frc5024/lib5k)-based robot projects.
 
 ## Usage
