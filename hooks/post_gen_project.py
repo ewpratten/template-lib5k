@@ -2,6 +2,8 @@ import os
 import re
 import urllib.request, urllib.error
 
+print("--- Installation Script Output ---")
+
 PACKAGE = "{{cookiecutter.java_package}}.y{{cookiecutter.year}}.{{cookiecutter.robot_name}}"
 
 # Convert Java package into a path
@@ -104,3 +106,38 @@ try:
 
 except urllib.error.HTTPError as e:
     print("Latest version of Lib5K does not contain any scripts")
+
+### VendorDeps ###
+
+def saveDep(url, filename):
+    print(f"Downloading and saving {filename}: ", end="\r")
+    file = urllib.request.urlopen(url).read().decode()
+    with open(f"vendordeps/{filename}", "w") as fp:
+        fp.write(file)
+        fp.close()
+    print(f"Downloading and saving {filename}: Done")
+
+
+# Create vendordeps folder
+if not os.path.exists("vendordeps"):
+    os.mkdir("vendordeps")
+
+# Add each dependency
+saveDep("http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/Phoenix-latest.json", "Phoenix.json")
+
+# The NavX server doesnt like scripts calling it
+try:
+    saveDep("http://www.kauailabs.com/dist/frc/{{cookiecutter.year}}/navx_frc.json", "navx_frc.json")
+except urllib.error.HTTPError as e:
+    print("The NavX server did not respond correctly. Please download the navx_frc.json vendordep manually from:")
+    print("http://www.kauailabs.com/dist/frc/{{cookiecutter.year}}/navx_frc.json")
+
+# The revrobotics server is really unstable
+try:
+    try:
+        saveDep("http://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json", "REVRobotics.json")
+    except urllib.error.HTTPError as e:
+        saveDep("https://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json", "REVRobotics.json")
+except urllib.error.HTTPError as e:
+    print("The RevRobotics server is currently unstable. Please download the REVRobotics.json vendordep manually from:")
+    print("http://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json")
